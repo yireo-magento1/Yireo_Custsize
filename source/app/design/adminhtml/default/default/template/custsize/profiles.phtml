@@ -1,0 +1,30 @@
+<?php
+/**
+ * Yireo Custsize
+ *
+ * @package     Yireo_Custsize
+ * @author      Yireo (http://www.yireo.com/)
+ * @copyright   Copyright (c) 2011 Yireo (http://www.yireo.com/)
+ * @license     Open Software License
+ */
+
+?>
+<div class="content-header">
+<table cellspacing="0">
+	<tr>
+		<td style="width:100%;"><h3 class="icon-head head-tag"><?php echo $this->__('Size Profiles'); ?></h3></td>
+	</tr>
+</table>
+</div>
+
+<div class="entry-edit" id="custsize-profiles">
+    <?php echo $this->getGridHtml() ?>
+</div>
+
+<script type="text/javascript">
+var profilesForm = new varienForm('custsize_profiles_form');
+function doSubmit() {
+    profilesForm.submit();
+    return true;
+}
+</script>

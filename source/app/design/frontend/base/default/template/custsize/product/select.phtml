@@ -1,0 +1,37 @@
+<?php
+/**
+ * Yireo Custsize
+ *
+ * @package     Yireo_Custsize
+ * @author      Yireo (http://www.yireo.com/)
+ * @copyright   Copyright (c) 2011 Yireo (http://www.yireo.com/)
+ * @license     Open Software License
+ */
+
+$profiles = $this->getProfiles();
+$product = $this->getProduct();
+?>
+<?php if(!empty($product) && $product->getData('custsize') == 1) { ?>
+<div style="clear:both"></div>
+<div style="margin:15px;">
+    <?php if($this->customerIsLoggedIn() == false) { ?>
+        <p><?php echo $this->__('Please login and create a size profile') ?></p>
+        <a href="<?php echo $this->getUrl('customer/account/login') ?>"><?php echo $this->__('Click here to login') ?></a>
+        <input type="hidden" name="custsize_profile_id" id="custsize_profile_id" value="" class="required-entry" />
+    <?php } elseif($profiles->count() == 0) { ?>
+        <p><?php echo $this->__('Please create a size profile') ?></p>
+        <a href="<?php echo $this->getNewProfileUrl() ?>"><?php echo $this->__('Click here to create a profile') ?></a>
+        <input type="hidden" name="custsize_profile_id" id="custsize_profile_id" value="" class="required-entry" />
+    <?php } else { ?>
+        <label for="custsize_profile_id" class="required"><em>*</em> <?php echo $this->__('Your size profile') ?></label>
+        <div class="input-box">
+        <select name="custsize_profile_id" id="custsize_profile_id" value="custsize_profile_id" class="required-entry">
+            <?php foreach($profiles as $profile) { ?>
+            <?php $selected = ($profile->getData('default') == 1) ? 'selected' : ''; ?>
+            <option <?php echo $selected ?> value="<?php echo $profile->getProfileId() ?>"><?php echo $profile->getName() ?></option>
+            <?php } ?>
+        </select>
+        </div>
+    <?php } ?>
+</div>
+<?php } ?>

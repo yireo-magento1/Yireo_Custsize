@@ -1,0 +1,224 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Yireo Custsize extension
+ *
+ * @author Yireo
+ * @package Custsize
+ * @copyright Copyright 2014
+ * @license Yireo EULA (www.yireo.com)
+ * @link http://www.yireo.com
+ */
+-->
+<config>
+
+    <modules>
+        <Yireo_Custsize>
+            <version>0.0.8</version>
+        </Yireo_Custsize>
+    </modules>
+
+    <global>
+        <blocks>
+            <custsize>
+                <class>Yireo_Custsize_Block</class>
+            </custsize>
+            <checkout>
+                <rewrite>
+                    <cart_item_renderer>Yireo_Custsize_Block_Rewrite_Checkout_Cart_Item_Renderer</cart_item_renderer>
+                </rewrite>
+            </checkout>
+            <sales>
+                <rewrite>
+                    <order_email_items_order_default>Yireo_Custsize_Block_Rewrite_Sales_Order_Email_Items_Order_Default</order_email_items_order_default>
+                </rewrite>
+                <rewrite>
+                    <order_email_items_default>Yireo_Custsize_Block_Rewrite_Sales_Order_Email_Items_Default</order_email_items_default>
+                </rewrite>
+            </sales>
+            <adminhtml>
+                <rewrite>
+                    <sales_items_column_name>Yireo_Custsize_Block_Rewrite_Adminhtml_Order_Item_Name</sales_items_column_name>
+                </rewrite>
+            </adminhtml>
+        </blocks>
+
+        <helpers>
+            <custsize>
+                <class>Yireo_Custsize_Helper</class>
+            </custsize>
+        </helpers>
+
+        <models>
+            <custsize>
+                <class>Yireo_Custsize_Model</class>
+                <resourceModel>custsize_mysql4</resourceModel>
+            </custsize>
+            <custsize_mysql4>
+                <class>Yireo_Custsize_Model_Mysql4</class>
+                <entities>
+                    <profile>
+                        <table>custsize_profile</table>
+                    </profile>
+                    <profile_field>
+                        <table>custsize_profile_field</table>
+                    </profile_field>
+                    <profile_value>
+                        <table>custsize_profile_value</table>
+                    </profile_value>
+                    <profile_fieldset>
+                        <table>custsize_profile_fieldset</table>
+                    </profile_fieldset>
+                </entities>
+            </custsize_mysql4>
+        </models>
+
+        <resources>
+            <custsize_setup>
+                <setup>
+                    <module>Yireo_Custsize</module>
+                    <class>Mage_Catalog_Model_Resource_Eav_Mysql4_Setup</class>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </custsize_setup>
+            <custsize_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </custsize_write>
+            <custsize_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </custsize_read>
+        </resources>
+    </global>
+
+    <frontend>
+        <secure_url>
+            <custsize>/custsize/</custsize>
+        </secure_url>
+        <routers>
+            <custsize>
+                <use>standard</use>
+                <args>
+                    <module>Yireo_Custsize</module>
+                    <frontName>custsize</frontName>
+                </args>
+            </custsize>
+        </routers>
+        <layout>
+            <updates>
+                <custsize>
+                    <file>custsize.xml</file>
+                </custsize>
+            </updates>
+        </layout>
+        <events>
+            <checkout_cart_add_product_complete>
+                <observers>
+                    <custsize_observer>
+                        <type>singleton</type>
+                        <class>custsize/observer</class>
+                        <method>checkoutCartAddProductComplete</method>
+                    </custsize_observer>
+                </observers>
+            </checkout_cart_add_product_complete>
+        </events>
+    </frontend>
+
+    <adminhtml>
+        <translate>
+            <modules>
+                <Yireo_Custsize>
+                    <files>
+                        <default>Yireo_Custsize.csv</default>
+                    </files>
+                </Yireo_Custsize>
+            </modules>
+        </translate>
+
+        <layout>
+            <updates>
+                <custsize>
+                    <file>custsize.xml</file>
+                </custsize>
+            </updates>
+        </layout>
+
+        <menu>
+            <customer>
+                <children>
+                    <custsize_profiles translate="title" module="custsize">
+                        <title>Size Profiles</title>
+                        <action>adminhtml/custsize/profiles</action>
+                    </custsize_profiles>
+                </children>
+            </customer>
+            <catalog>
+                <children>
+                    <attributes>
+                        <children>
+                            <custsize_fields translate="title" module="custsize">
+                                <title>Customer Size Fields</title>
+                                <action>adminhtml/custsize/fields</action>
+                            </custsize_fields>
+                        </children>
+                    </attributes>
+                </children>
+            </catalog>
+        </menu>
+
+        <acl>
+            <resources>
+                <admin>
+                    <children>
+                        <customer>
+                            <children>
+                                <custsize_profiles translate="title" module="custsize">
+                                    <title>Size Profiles</title>
+                                </custsize_profiles>
+                            </children>
+                        </customer>
+                        <catalog>
+                            <children>
+                                <attributes>
+                                    <children>
+                                        <custsize_fields translate="title" module="custsize">
+                                            <title>Customer Size Fields</title>
+                                        </custsize_fields>
+                                    </children>
+                                </attributes>
+                            </children>
+                        </catalog>
+                        <system>
+                            <children>
+                                <config>
+                                    <children>
+                                        <custsize translate="title" module="custsize">
+                                            <title>Custsize Section</title>
+                                        </custsize>
+                                    </children>
+                                </config>
+                            </children>
+                        </system>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+    </adminhtml>
+
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <custsize after="Mage_Adminhtml">Yireo_Custsize</custsize>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+</config>

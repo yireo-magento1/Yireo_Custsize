@@ -1,0 +1,104 @@
+<?php
+/**
+ * Yireo Custsize
+ *
+ * @author Yireo
+ * @package Custsize
+ * @copyright Copyright 2011
+ * @license Yireo EULA (www.yireo.com)
+ * @link http://www.yireo.com
+ */
+?>
+<?php
+/**
+ * Product listing
+ *
+ * @see Yireo_Custsize_Block_Admin_Fieldset_Edit
+ */
+
+$fieldset = $this->getFieldset();
+?>
+<div class="content-header">
+<table cellspacing="0">
+	<tr>
+		<td style="width:40%;"><h3 class="icon-head head-tag"><?php echo $this->getTitle(); ?></h3></td>
+        <td class="formbuttons" align="right">
+            <?php echo $this->getChildHtml('back_button'); ?>
+            <?php if($fieldset->getFieldsetId() > 0) echo $this->getChildHtml('delete_button'); ?>
+            <?php echo $this->getChildHtml('save_button'); ?>
+        </td>
+	</tr>
+</table>
+</div>
+
+<div id="alert_messages_block"><?php echo $this->getMessageHtml() ?></div>
+
+<form action="<?php echo $this->getSaveUrl() ?>" method="post" id="custsize_edit_form" enctype="multipart/form-data">
+<div class="entry-edit">
+<div class="entry-edit-head">
+    <h4><?php echo $this->__('Edit'); ?></h4>
+</div>
+<div class="fieldset">
+<table cellspacing="0" class="form-list">
+    <tbody>
+        <tr class="headings">
+            <td class="label">
+                <label for="fieldset_id"><?php echo Mage::helper('custsize')->__('ID')?></label>
+            </td>
+            <td class="value">
+                <?php echo $fieldset->getFieldsetId(); ?>
+                <input type="hidden" name="fieldset[fieldset_id]" id="fieldset_id" value="<?php echo $fieldset->getFieldsetId(); ?>" />
+            </td>
+        </tr>
+        <tr class="headings">
+            <td class="label">
+                <label for="label"><?php echo Mage::helper('custsize')->__('Label')?></label>
+            </td>
+            <td class="value">
+                <input type="text" name="fieldset[label]" id="label" value="<?php echo $fieldset->getLabel(); ?>" class="input-text required-entry" />
+            </td>
+        </tr>
+        <tr class="headings">
+            <td class="label">
+                <label for="tag"><?php echo Mage::helper('custsize')->__('Tag')?></label>
+            </td>
+            <td class="value">
+                <input type="text" name="fieldset[tag]" id="tag" value="<?php echo $fieldset->getTag(); ?>" class="input-text required-entry" />
+            </td>
+        </tr>
+        <tr class="headings">
+            <td class="label">
+                <label for="description"><?php echo Mage::helper('custsize')->__('Description')?></label>
+            </td>
+            <td class="value">
+                <input type="text" name="fieldset[description]" id="description" value="<?php echo $fieldset->getDescription(); ?>" class="input-text" />
+            </td>
+        </tr>
+        <tr class="headings">
+            <td class="label">
+                <label><?php echo Mage::helper('custsize')->__('Enabled')?></label>
+            </td>
+            <td class="value">
+                <?php echo $this->getYesno('enabled', $fieldset->getEnabled()); ?>
+            </td>
+        </tr>
+        <tr class="headings">
+            <td class="label">
+                <label for="ordering"><?php echo Mage::helper('custsize')->__('Ordering')?></label>
+            </td>
+            <td class="value">
+                <input type="text" name="fieldset[ordering]" id="ordering" value="<?php echo $fieldset->getOrdering(); ?>" class="input-text" />
+            </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+</div>
+
+<?php echo $this->getBlockHtml('formkey')?>
+</form>
+
+<script type="text/javascript">
+//<![CDATA[
+var custsizeForm = new varienForm('custsize_edit_form');
+</script>

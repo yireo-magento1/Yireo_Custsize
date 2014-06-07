@@ -1,0 +1,118 @@
+<?php
+/**
+ * Yireo Custsize
+ *
+ * @package     Yireo_Custsize
+ * @author      Yireo (http://www.yireo.com/)
+ * @copyright   Copyright (c) 2011 Yireo (http://www.yireo.com/)
+ * @license     Open Software License
+ */
+
+$profile = $this->getProfile();
+?>
+<div class="page-title">
+    <h1><?php echo $this->getTitle(); ?></h1>
+</div>
+<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+<form action="<?php echo $this->getSaveUrl()?>" method="post" id="form-validate">
+    <?php echo $this->getBlockHtml('formkey')?>
+    <div class="fieldset">
+        <h2 class="legend"><?php echo $this->__('Basic Information') ?></h2>
+        <?php $basicFields = $this->getFieldsFromFieldset('basic'); ?>
+        <ul class="form-list">
+            <li>
+                <label for="name" class="required">
+                    <?php echo $this->__('Name')?>
+                </label>
+                <div class="input-box">
+                    <input type="text" name="profile[name]" id="name" 
+                        value="<?php echo $this->htmlEscape($profile->getData('name')) ?>" 
+                        title="<?php echo $this->__('Name') ?>" class="input-text" />
+                </div>
+            </li>
+            <li>
+                <label for="description">
+                    <?php echo $this->__('Description')?>
+                </label>
+                <div class="input-box">
+                    <input type="text" name="profile[description]" id="description" 
+                        value="<?php echo $this->htmlEscape($profile->getData('description')) ?>" 
+                        title="<?php echo $this->__('Description') ?>" class="input-text" />
+                </div>
+            </li>
+            <?php foreach($basicFields as $field): ?>
+            <li>
+                <?php $class = array(); ?>
+                <?php if($field->getData('required') == 1) $class[] = 'required'; ?>
+                <label for="field<?php echo $field->getId()?>" class="<?php echo implode($class)?>">
+                    <?php echo $this->__($field->getLabel())?>
+                </label>
+                <?php if($field->getDescription()): ?><br/><em><?php echo $field->getDescription(); ?></em><?php endif; ?>
+                <div class="input-box">
+                    <input type="text" name="field[<?php echo $field->getId()?>]" id="<?php echo $field->getId()?>" 
+                        value="<?php echo $this->htmlEscape($profile->getData('field'.$field->getId())) ?>" 
+                        title="<?php echo $this->__($field->getLabel()) ?>" class="input-text" />
+                    <?php if($field->getUnit()): ?><small>[<?php echo $field->getUnit(); ?>]</small><?php endif; ?>
+                </div>
+            </li>
+            <?php endforeach; ?>
+            <li>
+                <label for="default"><?php echo $this->__('Default'); ?></label>
+                <div class="input-box">
+                    <input type="checkbox" name="profile[default]" value="1" <?php if($profile->getData('default')) echo 'checked' ?> />
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <?php foreach($this->getFieldsets() as $fieldset) : ?>
+    <?php if($fieldset->getTag() == 'basic') continue; ?>
+    <div class="fieldset">
+        <h2 class="legend"><?php echo $this->__($fieldset->getLabel()) ?></h2>
+        <?php $fields = $this->getFieldsFromFieldset($fieldset->getTag()); ?>
+        <?php if($fields->count() > 0) : ?>
+        <table width="100%">
+            <?php foreach($fields as $field): ?>
+            <tr>
+                <?php $class = array(); ?>
+                <?php if($field->getData('required') == 1) $class[] = 'required'; ?>
+                <td>
+                    <h3><?php echo $field->getMarker() ?></h3>
+                </td>
+                <td>
+                    <label for="field<?php echo $field->getId()?>" class="<?php echo implode($class)?>">
+                        <?php echo $this->__($field->getLabel())?>
+                    </label>
+                    <?php if($field->getDescription()): ?><br/><em><?php echo $field->getDescription(); ?></em><?php endif; ?>
+                </td>
+                <td class="input-box">
+                    <input type="text" name="field[<?php echo $field->getId()?>]" id="field<?php echo $field->getId()?>" 
+                        value="<?php echo $this->htmlEscape($profile->getData('field'.$field->getId())) ?>" 
+                        title="<?php echo $this->__($field->getLabel()) ?>" class="input-text" />
+                </td>
+                <td>
+                    <?php if($field->getUnit()): ?><small>[<?php echo $field->getUnit(); ?>]</small><?php endif; ?>
+                </td>
+            </tr>
+            <?php endforeach; ?>
+        </table>
+        <?php else: ?>
+        <p><?php echo $this->__('No fields found'); ?></p>
+        <?php endif; ?>
+    </div>
+    <?php endforeach; ?>
+
+    <div class="buttons-set">
+        <p class="required"><?php echo $this->__('* Required Fields') ?></p>
+        <p class="back-link"><a href="<?php echo $this->getUrl('custsize/index/profiles') ?>"><small>&laquo; </small><?php echo $this->__('Back') ?></a></p>
+        <button type="submit" title="<?php echo $this->__('Save') ?>" class="button"><span><span><?php echo $this->__('Save') ?></span></span></button>
+    </div>
+</form>
+<form action="<?php echo $this->getConfirmdeleteUrl()?>" method="post" id="form-validate">
+    <div style="float:right; padding-top:5px;">
+        <?php echo $this->getBlockHtml('formkey')?>
+        <?php if($profile->getProfileId() > 0) : ?>
+        <button type="submit" title="<?php echo $this->__('Delete') ?>" class="button"><span><span><?php echo $this->__('Delete') ?></span></span></button>
+        <?php endif; ?>
+    </div>
+</form>

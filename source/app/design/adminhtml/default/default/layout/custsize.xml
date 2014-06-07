@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Yireo Custsize
+ *
+ * @package     Yireo_Custsize
+ * @author      Yireo (http://www.yireo.com/)
+ * @copyright   Copyright (c) 2014 Yireo (http://www.yireo.com/)
+ * @license     Open Software License
+ */
+-->
+<layout version="0.1.0">
+    <adminhtml_customer_edit>
+        <reference name="customer_edit_tabs">
+            <block type="custsize/admin_customer_tab" name="custsize_admin_profiles" />
+            <action method="addTab"><name>custsize_admin_profiles</name><block>custsize_admin_profiles</block></action>
+        </reference>
+    </adminhtml_customer_edit>
+</layout>

@@ -1,0 +1,163 @@
+<?php
+/**
+ * Yireo Custsize
+ *
+ * @package     Yireo_Custsize
+ * @author      Yireo (http://www.yireo.com/)
+ * @copyright   Copyright (c) 2011 Yireo (http://www.yireo.com/)
+ * @license     Open Software License
+ */
+
+$profile = $this->getProfile();
+?>
+<div class="content-header">
+<table cellspacing="0">
+	<tr>
+		<td style="width:40%;"><h3 class="icon-head head-tag"><?php echo $this->__('Edit Customer Size Profile'); ?></h3></td>
+        <td class="formbuttons" align="right">
+            <?php echo $this->getChildHtml('back_button'); ?>
+            <?php echo $this->getChildHtml('delete_button'); ?>
+            <?php echo $this->getChildHtml('copy_button'); ?>
+            <?php echo $this->getChildHtml('save_button'); ?>
+        </td>
+	</tr>
+</table>
+</div>
+
+<div id="alert_messages_block"><?php echo $this->getMessageHtml() ?></div>
+
+<?php if($this->getCustomerId() > 0): ?>
+<div class="entry-edit">
+    <div class="entry-edit-head">
+        <h4><?php echo $this->__('Customer'); ?></h4>
+    </div>
+    <div class="fieldset">
+        <table cellspacing="0" class="form-list">
+            <tbody>
+                <tr class="headings">
+                    <td class="label">
+                        <?php echo $this->__('Name'); ?>
+                    </td>
+                    <td class="value">
+                        <?php echo $this->getCustomer()->getName(); ?>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<?php endif; ?>
+
+<form action="<?php echo $this->getSaveUrl()?>" method="post" id="custsize_edit_form">
+<?php if($this->getCustomerId() > 0): ?>
+<input type="hidden" name="profile[customer_id]" value="<?php echo $this->getCustomerId(); ?>" />
+<?php endif; ?>
+<div class="entry-edit">
+    <div class="entry-edit-head">
+        <h4><?php echo $this->__('Basic Information'); ?></h4>
+    </div>
+    <div class="fieldset">
+        <?php $basicFields = $this->getFieldset('basic'); ?>
+        <table cellspacing="0" class="form-list">
+            <tbody>
+                <?php if($profile->getData('profile_id') > 0): ?>
+                <tr class="headings">
+                    <td class="label">
+                        <label for="id"><?php echo Mage::helper('custsize')->__('ID')?></label>
+                    </td>
+                    <td class="value">
+                        <?php echo $profile->getData('profile_id'); ?>
+                    </td>
+                </tr>
+                <?php endif; ?>
+                <tr class="headings">
+                    <td class="label">
+                        <label for="name"><?php echo Mage::helper('custsize')->__('Name')?></label>
+                    </td>
+                    <td class="value">
+                        <input type="text" name="profile[name]" id="name" 
+                            value="<?php echo $this->htmlEscape($profile->getData('name')) ?>" 
+                            title="<?php echo $this->__('Name') ?>" class="input-text" />
+                    </td>
+                </tr>
+                <tr class="headings">
+                    <td class="label">
+                        <label for="description"><?php echo Mage::helper('custsize')->__('Description')?></label>
+                    </td>
+                    <td class="value">
+                        <input type="text" name="profile[description]" id="description" 
+                            value="<?php echo $this->htmlEscape($profile->getData('description')) ?>" 
+                            title="<?php echo $this->__('Description') ?>" class="input-text" />
+                    </td>
+                </tr>
+                <?php foreach($basicFields as $field): ?>
+                    <?php $class = array('input-text'); ?>
+                    <?php if($field->getData('required') == 1) $class[] = 'required-entry'; ?>
+                    <tr class="headings">
+                        <td class="label">
+                            <label for="field<?php echo $field->getId()?>" class="<?php echo implode($class)?>">
+                                <?php echo $this->__($field->getLabel())?>
+                                <?php if($field->getData('required') == 1): ?><span class="required">*</span><?php endif; ?>
+                            </label>
+                        </td>
+                        <td class="value">
+                            <input type="text" name="field[<?php echo $field->getId()?>]" id="<?php echo $field->getId()?>" 
+                                value="<?php echo $this->htmlEscape($profile->getData('field'.$field->getId())) ?>" 
+                                title="<?php echo $this->__($field->getLabel()) ?>" class="<?php echo implode(' ',$class); ?>" />
+                            <?php if($field->getUnit()): ?><small>[<?php echo $field->getUnit(); ?>]</small><?php endif; ?>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+                <tr class="headings">
+                    <td class="label">
+                        <label for="default"><?php echo Mage::helper('custsize')->__('Default')?></label>
+                    </td>
+                    <td class="value">
+                        <input type="checkbox" name="profile[default]" value="1" <?php if($profile->getData('default')) echo 'checked' ?> />
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="entry-edit">
+    <div class="entry-edit-head">
+        <h4><?php echo $this->__('Measurements'); ?></h4>
+    </div>
+    <div class="fieldset">
+        <?php $measurementFields = $this->getFieldset('measurements'); ?>
+        <?php if($measurementFields->count() > 0) : ?>
+        <table cellspacing="0" class="form-list">
+            <?php foreach($measurementFields as $field): ?>
+            <tr class="headings">
+                <?php $class = array('input-text'); ?>
+                <?php if($field->getData('required') == 1) $class[] = 'required-entry'; ?>
+                <td class="label">
+                    <label for="field<?php echo $field->getId()?>">
+                        <?php echo $this->__($field->getLabel())?>
+                        <?php if($field->getData('required') == 1): ?><span class="required">*</span><?php endif; ?>
+                    </label>
+                </td>
+                <td class="value">
+                    <input type="text" name="field[<?php echo $field->getId()?>]" id="field<?php echo $field->getId()?>" 
+                        value="<?php echo $this->htmlEscape($profile->getData('field'.$field->getId())) ?>" 
+                        title="<?php echo $this->__($field->getLabel()) ?>" class="<?php echo implode(' ',$class); ?>" />
+                    <?php if($field->getUnit()): ?><small>[<?php echo $field->getUnit(); ?>]</small><?php endif; ?>
+                </td>
+            </tr>
+            <?php endforeach; ?>
+        </table>
+        <?php else: ?>
+        <p><?php echo $this->__('No fields found'); ?></p>
+        <?php endif; ?>
+    </div>
+</div>
+
+<?php echo $this->getBlockHtml('formkey')?>
+</form>
+
+<script type="text/javascript">
+//<![CDATA[
+var custsizeForm = new varienForm('custsize_edit_form');
+</script>

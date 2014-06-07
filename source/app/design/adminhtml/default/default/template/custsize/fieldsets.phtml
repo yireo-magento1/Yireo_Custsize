@@ -1,0 +1,30 @@
+<?php
+/**
+ * Yireo Custsize
+ *
+ * @package     Yireo_Custsize
+ * @author      Yireo (http://www.yireo.com/)
+ * @copyright   Copyright (c) 2011 Yireo (http://www.yireo.com/)
+ * @license     Open Software License
+ */
+?>
+
+<div class="content-header">
+<table cellspacing="0">
+	<tr>
+		<td style="width:100%;"><h3 class="icon-head head-tag"><?php echo $this->__('Customer Fieldsets'); ?></h3></td>
+	</tr>
+</table>
+</div>
+
+<div class="entry-edit" id="custsize-fieldsets">
+    <?php echo $this->getGridHtml() ?>
+</div>
+
+<script type="text/javascript">
+var fieldsetsForm = new varienForm('custsize_fieldsets_form');
+function doSubmit() {
+    fieldsetsForm.submit();
+    return true;
+}
+</script>

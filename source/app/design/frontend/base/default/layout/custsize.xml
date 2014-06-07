@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Yireo Custsize
+ *
+ * @package     Yireo_Custsize
+ * @author      Yireo (http://www.yireo.com/)
+ * @copyright   Copyright (c) 2011 Yireo (http://www.yireo.com/)
+ * @license     Open Software License
+ */
+-->
+<layout version="0.1.0">
+
+    <customer_account>
+        <reference name="customer_account_navigation">
+            <action method="addLink" translate="label" module="custsize"><name>custsize_profiles</name><path>custsize/index/profiles</path><label>My Size Profiles</label></action>
+        </reference>
+    </customer_account>
+
+    <customer_account_index>
+        <reference name="my.account.wrapper">
+            <block type="custsize/profiles" name="custsize_profiles" template="custsize/profiles_dashboard.phtml" />
+        </reference>
+    </customer_account_index>
+
+    <custsize_index_profiles>
+        <update handle="customer_account"/>
+        <reference name="content">
+            <block type="custsize/profiles" name="custsize_profiles" template="custsize/profiles.phtml" />
+        </reference>
+        <reference name="head">
+            <action method="setTitle"><title>My Size Profiles</title></action>
+        </reference>
+    </custsize_index_profiles>
+
+    <custsize_index_profile_view>
+        <update handle="customer_account"/>
+        <reference name="content">
+            <block type="custsize/profile_view" name="custsize_profile_view" template="custsize/profile/view.phtml" />
+        </reference>
+        <reference name="head">
+            <action method="setTitle"><title>View Profile</title></action>
+        </reference>
+    </custsize_index_profile_view>
+
+    <custsize_index_profile_confirmdelete>
+        <update handle="customer_account"/>
+        <reference name="content">
+            <block type="custsize/profile_confirmdelete" name="custsize_profile_confirmdelete" template="custsize/profile/confirmdelete.phtml" />
+        </reference>
+        <reference name="head">
+            <action method="setTitle"><title>Delete Profile</title></action>
+        </reference>
+    </custsize_index_profile_confirmdelete>
+
+    <custsize_index_profile_edit>
+        <update handle="customer_account"/>
+        <reference name="content">
+            <block type="custsize/profile_edit" name="custsize_profile_edit" template="custsize/profile/edit.phtml" />
+        </reference>
+        <reference name="head">
+            <action method="setTitle"><title>Edit Profile</title></action>
+        </reference>
+    </custsize_index_profile_edit>
+
+    <catalog_product_view>
+        <reference name="product.info.addtocart">
+            <block type="custsize/product_select" name="custsize_profile_select" template="custsize/product/select.phtml" before="-" />
+        </reference>
+    </catalog_product_view>
+</layout>

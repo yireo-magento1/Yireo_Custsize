@@ -1,0 +1,85 @@
+<?php
+/**
+ * Yireo Custsize
+ *
+ * @package     Yireo_Custsize
+ * @author      Yireo (http://www.yireo.com/)
+ * @copyright   Copyright (c) 2011 Yireo (http://www.yireo.com/)
+ * @license     Open Software License
+ */
+
+$profiles = $this->getProfiles();
+$defaultProfile = $this->getDefaultProfile();
+$otherProfiles = $this->getOtherProfiles();
+
+?>
+<style>
+th {font-weight: bold;}
+</style>
+
+<div class="page-title">
+    <h1><?php echo $this->__('Size Profiles') ?></h1>
+</div>
+
+<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+
+<div class="fieldset">
+    <h2 class="legend"><?php echo $this->__('Default Size Profile') ?></h2>
+    <div>
+        <?php if(!empty($defaultProfile)): ?>
+        <table width="100%">
+        <thead>
+            <tr>
+                <th><?php echo $this->__('Name')?></th>
+                <th><?php echo $this->__('Description')?></th>
+                <th><?php echo $this->__('Actions')?></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><?php echo $defaultProfile->getName(); ?></td>
+                <td><?php echo $defaultProfile->getDescription(); ?></td>
+                <td><a href="<?php echo $this->getEditUrl($defaultProfile) ?>"><?php echo $this->__('Edit'); ?></a></td>
+            </tr>
+        </tbody>
+        </table>
+        <?php else: ?>
+            <p><?php echo $this->__('No default profile available'); ?></p>
+            <p><a href="<?php echo $this->getNewUrl() ?>"><?php echo $this->__('Click here to create a new profile'); ?></a></p>
+        <?php endif; ?>
+    </div>
+</div>
+
+<div class="fieldset">
+    <h2 class="legend"><?php echo $this->__('Additional Size Profiles') ?></h2>
+    <div>
+        <?php if(!empty($otherProfiles)): ?>
+        <table width="100%">
+        <thead>
+            <tr>
+                <th><?php echo $this->__('Name')?></th>
+                <th><?php echo $this->__('Description')?></th>
+                <th><?php echo $this->__('Actions')?></th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach($otherProfiles as $profile): ?>
+            <tr>
+                <td><?php echo $profile->getName(); ?></td>
+                <td><?php echo $profile->getDescription(); ?></td>
+                <td><a href="<?php echo $this->getEditUrl($profile) ?>"><?php echo $this->__('Edit'); ?></a></td>
+            </tr>
+            <?php endforeach; ?>
+        </tbody>
+        </table>
+        <?php else: ?>
+            <p><?php echo $this->__('No additional profiles available'); ?></p>
+        <?php endif; ?>
+    </div>
+</div>
+
+<div class="buttons-set">
+    <p class="back-link"><a href="<?php echo $this->getUrl('customer/account/') ?>"><small>&laquo; </small><?php echo $this->__('Back To Account Overview') ?></a></p>
+    <button type="button" onclick="window.location='<?php echo $this->getNewUrl() ?>';" class="button"><span><span><?php echo $this->__('Create New Profile') ?></span></span></button>
+</div>
+
