@@ -121,15 +121,17 @@ $profile = $this->getProfile();
     </div>
 </div>
 
+<?php foreach($this->getFieldsets() as $fieldset) : ?>
+<?php if($fieldset->getTag() == 'basic') continue; ?>
 <div class="entry-edit">
     <div class="entry-edit-head">
-        <h4><?php echo $this->__('Measurements'); ?></h4>
+        <h4><?php echo $this->__($fieldset->getLabel()) ?></h4>
     </div>
     <div class="fieldset">
-        <?php $measurementFields = $this->getFieldset('measurements'); ?>
-        <?php if($measurementFields->count() > 0) : ?>
+        <?php $fields = $this->getFieldsFromFieldset($fieldset->getTag()); ?>
+        <?php if($fields->count() > 0) : ?>
         <table cellspacing="0" class="form-list">
-            <?php foreach($measurementFields as $field): ?>
+            <?php foreach($fields as $field): ?>
             <tr class="headings">
                 <?php $class = array('input-text'); ?>
                 <?php if($field->getData('required') == 1) $class[] = 'required-entry'; ?>
@@ -153,6 +155,7 @@ $profile = $this->getProfile();
         <?php endif; ?>
     </div>
 </div>
+<?php endforeach; ?>
 
 <?php echo $this->getBlockHtml('formkey')?>
 </form>

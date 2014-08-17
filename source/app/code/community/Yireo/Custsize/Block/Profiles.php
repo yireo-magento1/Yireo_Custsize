@@ -25,7 +25,10 @@ class Yireo_Custsize_Block_Profiles extends Mage_Core_Block_Template
         $profiles = $this->getProfiles();
         if(!empty($profiles)) {
             foreach($profiles as $profile) {
-                if($profile->getData('default') == 1) return $profile;
+                if($profile->getData('default') == 1) {
+                    $profile->load($profile->getId());
+                    return $profile;
+                }
             }
         }
         return null;
@@ -51,6 +54,15 @@ class Yireo_Custsize_Block_Profiles extends Mage_Core_Block_Template
             $profiles = Mage::getModel('custsize/profile')->getCollection()->addFieldToFilter('customer_id', $customerId);;
         }
         return $profiles;
+    }
+
+    public function getDashboardFields()
+    {
+        $fields = Mage::getModel('custsize/profile_field')->getCollection()
+            ->addFieldToFilter('enabled', 1)
+            ->addFieldToFilter('dashboard', 1)
+        ;
+        return $fields;
     }
 
     public function getNewUrl()

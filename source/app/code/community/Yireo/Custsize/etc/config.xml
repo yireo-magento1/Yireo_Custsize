@@ -14,7 +14,7 @@
 
     <modules>
         <Yireo_Custsize>
-            <version>0.0.8</version>
+            <version>0.0.10</version>
         </Yireo_Custsize>
     </modules>
 
@@ -147,29 +147,6 @@
                 </custsize>
             </updates>
         </layout>
-
-        <menu>
-            <customer>
-                <children>
-                    <custsize_profiles translate="title" module="custsize">
-                        <title>Size Profiles</title>
-                        <action>adminhtml/custsize/profiles</action>
-                    </custsize_profiles>
-                </children>
-            </customer>
-            <catalog>
-                <children>
-                    <attributes>
-                        <children>
-                            <custsize_fields translate="title" module="custsize">
-                                <title>Customer Size Fields</title>
-                                <action>adminhtml/custsize/fields</action>
-                            </custsize_fields>
-                        </children>
-                    </attributes>
-                </children>
-            </catalog>
-        </menu>
 
         <acl>
             <resources>

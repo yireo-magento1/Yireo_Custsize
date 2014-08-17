@@ -43,7 +43,7 @@ $fieldset = $this->getFieldset();
     <tbody>
         <tr class="headings">
             <td class="label">
-                <label for="fieldset_id"><?php echo Mage::helper('custsize')->__('ID')?></label>
+                <label for="fieldset_id"><?php echo Mage::helper('custsize')->__('ID'); ?></label>
             </td>
             <td class="value">
                 <?php echo $fieldset->getFieldsetId(); ?>
@@ -52,7 +52,7 @@ $fieldset = $this->getFieldset();
         </tr>
         <tr class="headings">
             <td class="label">
-                <label for="label"><?php echo Mage::helper('custsize')->__('Label')?></label>
+                <label for="label"><?php echo Mage::helper('custsize')->__('Label'); ?></label>
             </td>
             <td class="value">
                 <input type="text" name="fieldset[label]" id="label" value="<?php echo $fieldset->getLabel(); ?>" class="input-text required-entry" />
@@ -60,15 +60,16 @@ $fieldset = $this->getFieldset();
         </tr>
         <tr class="headings">
             <td class="label">
-                <label for="tag"><?php echo Mage::helper('custsize')->__('Tag')?></label>
+                <label for="tag"><?php echo Mage::helper('custsize')->__('Tag'); ?></label>
             </td>
             <td class="value">
-                <input type="text" name="fieldset[tag]" id="tag" value="<?php echo $fieldset->getTag(); ?>" class="input-text required-entry" />
+                <input type="text" name="fieldset[tag]" id="tag" value="<?php echo $fieldset->getTag(); ?>" class="input-text" />
+                <br/><small><?php echo Mage::helper('custsize')->__('Value of the "name" argument of the HTML-element'); ?></small>
             </td>
         </tr>
         <tr class="headings">
             <td class="label">
-                <label for="description"><?php echo Mage::helper('custsize')->__('Description')?></label>
+                <label for="description"><?php echo Mage::helper('custsize')->__('Description'); ?></label>
             </td>
             <td class="value">
                 <input type="text" name="fieldset[description]" id="description" value="<?php echo $fieldset->getDescription(); ?>" class="input-text" />
@@ -76,7 +77,7 @@ $fieldset = $this->getFieldset();
         </tr>
         <tr class="headings">
             <td class="label">
-                <label><?php echo Mage::helper('custsize')->__('Enabled')?></label>
+                <label><?php echo Mage::helper('custsize')->__('Enabled'); ?></label>
             </td>
             <td class="value">
                 <?php echo $this->getYesno('enabled', $fieldset->getEnabled()); ?>
@@ -84,7 +85,7 @@ $fieldset = $this->getFieldset();
         </tr>
         <tr class="headings">
             <td class="label">
-                <label for="ordering"><?php echo Mage::helper('custsize')->__('Ordering')?></label>
+                <label for="ordering"><?php echo Mage::helper('custsize')->__('Ordering'); ?></label>
             </td>
             <td class="value">
                 <input type="text" name="fieldset[ordering]" id="ordering" value="<?php echo $fieldset->getOrdering(); ?>" class="input-text" />

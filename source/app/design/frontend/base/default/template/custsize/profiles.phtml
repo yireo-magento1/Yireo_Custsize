@@ -11,6 +11,7 @@
 $profiles = $this->getProfiles();
 $defaultProfile = $this->getDefaultProfile();
 $otherProfiles = $this->getOtherProfiles();
+$dashboardFields = $this->getDashboardFields();
 
 ?>
 <style>
@@ -32,6 +33,9 @@ th {font-weight: bold;}
             <tr>
                 <th><?php echo $this->__('Name')?></th>
                 <th><?php echo $this->__('Description')?></th>
+                <?php foreach($dashboardFields as $dashboardField) : ?>
+                <th><?php echo $dashboardField->getLabel(); ?></th>
+                <?php endforeach; ?>
                 <th><?php echo $this->__('Actions')?></th>
             </tr>
         </thead>
@@ -39,6 +43,9 @@ th {font-weight: bold;}
             <tr>
                 <td><?php echo $defaultProfile->getName(); ?></td>
                 <td><?php echo $defaultProfile->getDescription(); ?></td>
+                <?php foreach($dashboardFields as $dashboardField) : ?>
+                <td><?php echo $defaultProfile->getData('field'.$dashboardField->getId()); ?></td>
+                <?php endforeach; ?>
                 <td><a href="<?php echo $this->getEditUrl($defaultProfile) ?>"><?php echo $this->__('Edit'); ?></a></td>
             </tr>
         </tbody>

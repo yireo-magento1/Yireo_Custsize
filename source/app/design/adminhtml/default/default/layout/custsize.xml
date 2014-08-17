@@ -12,8 +12,7 @@
 <layout version="0.1.0">
     <adminhtml_customer_edit>
         <reference name="customer_edit_tabs">
-            <block type="custsize/admin_customer_tab" name="custsize_admin_profiles" />
-            <action method="addTab"><name>custsize_admin_profiles</name><block>custsize_admin_profiles</block></action>
+            <action method="addTab"><name>custsize_admin_profiles</name><block>custsize/admin_customer_tab</block></action>
         </reference>
     </adminhtml_customer_edit>
 </layout>

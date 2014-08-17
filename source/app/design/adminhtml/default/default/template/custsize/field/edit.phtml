@@ -68,14 +68,6 @@ $field = $this->getField();
         </tr>
         <tr class="headings">
             <td class="label">
-                <label for="marker"><?php echo Mage::helper('custsize')->__('Marker')?></label>
-            </td>
-            <td class="value">
-                <input type="text" name="field[marker]" id="marker" value="<?php echo $field->getMarker(); ?>" class="input-text" />
-            </td>
-        </tr>
-        <tr class="headings">
-            <td class="label">
                 <label for="fieldset"><?php echo Mage::helper('custsize')->__('Fieldset')?></label>
             </td>
             <td class="value">
@@ -122,6 +114,16 @@ $field = $this->getField();
             </td>
             <td class="value">
                 <?php echo $this->getYesno('dashboard', $field->getDashboard()); ?>
+                <br/><small><?php echo Mage::helper('custsize')->__('[Optional] Only used for custom development.'); ?></small>
+            </td>
+        </tr>
+        <tr class="headings">
+            <td class="label">
+                <label for="marker"><?php echo Mage::helper('custsize')->__('Marker')?></label>
+            </td>
+            <td class="value">
+                <input type="text" name="field[marker]" id="marker" value="<?php echo $field->getMarker(); ?>" class="input-text" />
+                <br/><small><?php echo Mage::helper('custsize')->__('[Optional] Only used for custom development.'); ?></small>
             </td>
         </tr>
         <tr class="headings">

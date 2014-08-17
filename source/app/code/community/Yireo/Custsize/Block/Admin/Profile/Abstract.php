@@ -90,6 +90,33 @@ class Yireo_Custsize_Block_Admin_Profile_Abstract extends Mage_Adminhtml_Block_W
         return $fields;
     }
 
+    /*
+     * Fetch all enabled fieldsets
+     */
+    public function getFieldsets()
+    {
+        $collection = Mage::getModel('custsize/profile_fieldset')->getCollection()
+            ->addFieldToFilter('enabled', 1)
+            ->setOrder('ordering', 'ASC')
+            ->load()
+        ;
+        return $collection;
+    }
+
+    /*
+     * Get all fields from a specific fieldset
+     */
+    public function getFieldsFromFieldset($fieldset = 'basic')
+    {
+        $fields = Mage::getModel('custsize/profile_field')->getCollection()
+            ->addFieldToFilter('fieldset', $fieldset)
+            ->addFieldToFilter('enabled', 1)
+            ->setOrder('ordering', 'ASC')
+            ->load()
+        ;
+        return $fields;
+    }
+
     protected function getUrlParams($task)
     {
         $params = array(

@@ -22,12 +22,12 @@ class Yireo_Custsize_Block_Admin_Customer_Tab  extends Mage_Adminhtml_Block_Temp
 
     public function getTabLabel()
     {
-        return Mage::helper('customer')->__('Size Profiles');
+        return Mage::helper('customer')->__('Customer Size Profiles');
     }
 
     public function getTabTitle()
     {
-        return Mage::helper('customer')->__('Size Profiles');
+        return Mage::helper('customer')->__('Customer Size Profiles');
     }
 
     public function canShowTab()
@@ -44,6 +44,11 @@ class Yireo_Custsize_Block_Admin_Customer_Tab  extends Mage_Adminhtml_Block_Temp
             return false;
         }
         return true;
+    }
+
+    public function getAfter()
+    {
+        return 'tags';
     }
 
     protected function _prepareLayout()
