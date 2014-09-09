@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Yireo Custsize extension
+ *
+ * @author Yireo
+ * @package Custsize
+ * @copyright Copyright 2014
+ * @license Yireo EULA (www.yireo.com)
+ * @link http://www.yireo.com
+ */
+-->
+<config>
+    <menu>
+        <customer>
+            <children>
+                <custsize_profiles translate="title" module="custsize">
+                    <title>Customer Size Profiles</title>
+                    <action>adminhtml/custsize/profiles</action>
+                </custsize_profiles>
+            </children>
+        </customer>
+        <catalog>
+            <children>
+                <attributes>
+                    <children>
+                        <custsize_fields translate="title" module="custsize">
+                            <title>Customer Size Fields</title>
+                            <action>adminhtml/custsize/fields</action>
+                        </custsize_fields>
+                    </children>
+                </attributes>
+            </children>
+        </catalog>
+    </menu>
+</config>
