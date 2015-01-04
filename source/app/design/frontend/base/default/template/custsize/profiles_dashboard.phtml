@@ -4,7 +4,7 @@
  *
  * @package     Yireo_Custsize
  * @author      Yireo (http://www.yireo.com/)
- * @copyright   Copyright (c) 2011 Yireo (http://www.yireo.com/)
+ * @copyright   Copyright (c) 2014 Yireo (http://www.yireo.com/)
  * @license     Open Software License
  */
 
@@ -44,7 +44,7 @@ td.name {font-weight: bold;}
                         </tr>
                         <?php foreach($dashboardFields as $dashboardField) : ?>
                         <tr>
-                            <td class="name"><?php echo $dashboardField->getLabel(); ?></td>
+                            <td class="name"><?php echo $this->__($dashboardField->getLabel()); ?></td>
                             <td class="value"><?php echo $defaultProfile->getData('field'.$dashboardField->getId()); ?></td>
                         </tr>
                         <?php endforeach; ?>
@@ -70,7 +70,7 @@ td.name {font-weight: bold;}
                     <tbody>
                         <?php foreach($otherProfiles as $profile): ?>
                         <tr>
-                            <td><?php echo $profile->getName(); ?></td>
+                            <td><?php echo $this->__($profile->getName()); ?></td>
                             <td><a href="<?php echo $this->getEditUrl($profile) ?>"><?php echo $this->__('Edit'); ?></a></td>
                         </tr>
                         <?php endforeach; ?>

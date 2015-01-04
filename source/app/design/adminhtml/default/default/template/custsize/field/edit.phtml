@@ -4,7 +4,7 @@
  *
  * @author Yireo
  * @package Custsize
- * @copyright Copyright 2011
+ * @copyright Copyright 2014
  * @license Yireo EULA (www.yireo.com)
  * @link http://www.yireo.com
  */
@@ -55,7 +55,7 @@ $field = $this->getField();
                 <label for="label"><?php echo Mage::helper('custsize')->__('Label')?></label>
             </td>
             <td class="value">
-                <input type="text" name="field[label]" id="label" value="<?php echo $field->getLabel(); ?>" class="input-text required-entry" />
+                <input type="text" name="field[label]" id="label" value="<?php echo htmlentities($field->getLabel()); ?>" class="input-text required-entry" />
             </td>
         </tr>
         <tr class="headings">
@@ -63,7 +63,7 @@ $field = $this->getField();
                 <label for="description"><?php echo Mage::helper('custsize')->__('Description')?></label>
             </td>
             <td class="value">
-                <input type="text" name="field[description]" id="description" value="<?php echo $field->getDescription(); ?>" class="input-text" />
+                <input type="text" name="field[description]" id="description" value="<?php echo htmlentities($field->getDescription()); ?>" class="input-text" />
             </td>
         </tr>
         <tr class="headings">
@@ -122,7 +122,7 @@ $field = $this->getField();
                 <label for="marker"><?php echo Mage::helper('custsize')->__('Marker')?></label>
             </td>
             <td class="value">
-                <input type="text" name="field[marker]" id="marker" value="<?php echo $field->getMarker(); ?>" class="input-text" />
+                <input type="text" name="field[marker]" id="marker" value="<?php echo htmlentities($field->getMarker()); ?>" class="input-text" />
                 <br/><small><?php echo Mage::helper('custsize')->__('[Optional] Only used for custom development.'); ?></small>
             </td>
         </tr>

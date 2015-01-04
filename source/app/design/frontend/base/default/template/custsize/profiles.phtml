@@ -4,7 +4,7 @@
  *
  * @package     Yireo_Custsize
  * @author      Yireo (http://www.yireo.com/)
- * @copyright   Copyright (c) 2011 Yireo (http://www.yireo.com/)
+ * @copyright   Copyright (c) 2014 Yireo (http://www.yireo.com/)
  * @license     Open Software License
  */
 
@@ -34,7 +34,7 @@ th {font-weight: bold;}
                 <th><?php echo $this->__('Name')?></th>
                 <th><?php echo $this->__('Description')?></th>
                 <?php foreach($dashboardFields as $dashboardField) : ?>
-                <th><?php echo $dashboardField->getLabel(); ?></th>
+                <th><?php echo $this->__($dashboardField->getLabel()); ?></th>
                 <?php endforeach; ?>
                 <th><?php echo $this->__('Actions')?></th>
             </tr>

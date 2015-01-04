@@ -4,7 +4,7 @@
  *
  * @author Yireo
  * @package Custsize
- * @copyright Copyright 2011
+ * @copyright Copyright 2014
  * @license Yireo EULA (www.yireo.com)
  * @link http://www.yireo.com
  */
@@ -55,7 +55,7 @@ $fieldset = $this->getFieldset();
                 <label for="label"><?php echo Mage::helper('custsize')->__('Label'); ?></label>
             </td>
             <td class="value">
-                <input type="text" name="fieldset[label]" id="label" value="<?php echo $fieldset->getLabel(); ?>" class="input-text required-entry" />
+                <input type="text" name="fieldset[label]" id="label" value="<?php echo htmlentities($fieldset->getLabel()); ?>" class="input-text required-entry" />
             </td>
         </tr>
         <tr class="headings">
@@ -72,7 +72,7 @@ $fieldset = $this->getFieldset();
                 <label for="description"><?php echo Mage::helper('custsize')->__('Description'); ?></label>
             </td>
             <td class="value">
-                <input type="text" name="fieldset[description]" id="description" value="<?php echo $fieldset->getDescription(); ?>" class="input-text" />
+                <input type="text" name="fieldset[description]" id="description" value="<?php echo htmlentities($fieldset->getDescription()); ?>" class="input-text" />
             </td>
         </tr>
         <tr class="headings">
