@@ -123,7 +123,6 @@ class Yireo_Custsize_CustsizeController extends Mage_Adminhtml_Controller_Action
         }
 
         $this->redirectProfileOverview();
-        return;
     }
 
     /**
@@ -155,7 +154,6 @@ class Yireo_Custsize_CustsizeController extends Mage_Adminhtml_Controller_Action
 
         // Redirect to the newly created profile-edit
         $this->_redirect('adminhtml/custsize/profile', array('task' => 'edit', 'profile_id' => $profile->getId()));
-        return;
     }
 
     /**
@@ -168,7 +166,6 @@ class Yireo_Custsize_CustsizeController extends Mage_Adminhtml_Controller_Action
         Mage::getModel('core/session')->addSuccess('Successfully deleted profile');
 
         $this->_redirect('adminhtml/custsize/profiles');
-        return;
     }
 
     /**
@@ -244,7 +241,6 @@ class Yireo_Custsize_CustsizeController extends Mage_Adminhtml_Controller_Action
         }
 
         $this->_redirect('adminhtml/custsize/fields');
-        return;
     }
 
     /**
@@ -257,7 +253,6 @@ class Yireo_Custsize_CustsizeController extends Mage_Adminhtml_Controller_Action
         Mage::getModel('core/session')->addSuccess('Successfully deleted field');
 
         $this->_redirect('adminhtml/custsize/fields');
-        return;
     }
 
     protected function setFieldId($field_id)
@@ -423,5 +418,16 @@ class Yireo_Custsize_CustsizeController extends Mage_Adminhtml_Controller_Action
         } else {
             $this->_redirect('adminhtml/custsize/profiles');
         }
+    }
+
+    protected function _isAllowed()
+    {
+        if ($this->getRequest()->getActionName() == 'fields') {
+            $aclResource = 'admin/catalog/attributes/custsize_fields';
+        } else {
+            $aclResource = 'admin/customer/custsize_profiles';
+        }
+
+        return Mage::getSingleton('admin/session')->isAllowed($aclResource);
     }
 }

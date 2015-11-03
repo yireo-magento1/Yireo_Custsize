@@ -11,7 +11,7 @@
 
 class Yireo_Custsize_Block_Product_Select extends Mage_Core_Block_Template
 {
-    /*
+    /**
      * Constructor method
      */
     public function _construct()

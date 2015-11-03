@@ -9,9 +9,12 @@
  * @link        http://www.yireo.com/
  */
 
+/**
+ * Class Yireo_Custsize_Block_Admin_Fields
+ */
 class Yireo_Custsize_Block_Admin_Fields extends Yireo_Custsize_Block_Admin_Abstract
 {
-    /*
+    /**
      * Constructor method
      */
     public function _construct()
@@ -20,6 +23,11 @@ class Yireo_Custsize_Block_Admin_Fields extends Yireo_Custsize_Block_Admin_Abstr
         $this->setTemplate('custsize/fields.phtml');
     }
 
+    /**
+     * Prepare the layout
+     *
+     * @return Mage_Core_Block_Abstract
+     */
     protected function _prepareLayout()
     {
         $this->setChild('grid', $this->getLayout()

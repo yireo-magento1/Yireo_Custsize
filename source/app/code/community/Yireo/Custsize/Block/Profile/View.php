@@ -11,7 +11,7 @@
 
 class Yireo_Custsize_Block_Profile_View extends Yireo_Custsize_Block_Profile_Abstract
 {
-    /*
+    /**
      * Constructor method
      */
     public function _construct()

@@ -11,11 +11,9 @@
 
 class Yireo_Custsize_Block_Rewrite_Sales_Order_Email_Items_Default extends Mage_Sales_Block_Order_Email_Items_Default
 {
-    /*
+    /**
      * Override of original method
      *
-     * @access public
-     * @param null
      * @return array
      */
     public function getItemOptions()

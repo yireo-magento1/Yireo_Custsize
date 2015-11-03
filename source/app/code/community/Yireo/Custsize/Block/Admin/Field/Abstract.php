@@ -11,7 +11,7 @@
 
 class Yireo_Custsize_Block_Admin_Field_Abstract extends Yireo_Custsize_Block_Admin_Abstract
 {
-    /*
+    /**
      * Constructor method
      */
     public function _construct()
@@ -25,7 +25,7 @@ class Yireo_Custsize_Block_Admin_Field_Abstract extends Yireo_Custsize_Block_Adm
         $this->setField(Mage::getModel('custsize/profile_field')->load($this->getFieldId()));
     }
 
-    /*
+    /**
      * Get the save URL
      */
     public function getSaveUrl()
@@ -33,7 +33,7 @@ class Yireo_Custsize_Block_Admin_Field_Abstract extends Yireo_Custsize_Block_Adm
         return Mage::helper('adminhtml')->getUrl('adminhtml/custsize/field', array('task' => 'save', 'field_id' => $this->getFieldId()));
     }
 
-    /*
+    /**
      * Get the cofirmdelete URL
      */
     public function getDeleteUrl()
@@ -41,7 +41,7 @@ class Yireo_Custsize_Block_Admin_Field_Abstract extends Yireo_Custsize_Block_Adm
         return Mage::helper('adminhtml')->getUrl('adminhtml/custsize/field', array('task' => 'delete', 'field_id' => $this->getFieldId()));
     }
 
-    /*
+    /**
      * Get the cofirmdelete URL
      */
     public function getFieldsetsUrl()

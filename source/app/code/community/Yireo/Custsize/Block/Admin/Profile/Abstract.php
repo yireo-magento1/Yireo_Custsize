@@ -11,7 +11,7 @@
 
 class Yireo_Custsize_Block_Admin_Profile_Abstract extends Mage_Adminhtml_Block_Widget_Container
 {
-    /*
+    /**
      * Constructor method
      */
     public function _construct()
@@ -31,7 +31,7 @@ class Yireo_Custsize_Block_Admin_Profile_Abstract extends Mage_Adminhtml_Block_W
         $this->setCustomer($customer);
     }
 
-    /*
+    /**
      * Get the save URL
      */
     public function getSaveUrl()
@@ -39,7 +39,7 @@ class Yireo_Custsize_Block_Admin_Profile_Abstract extends Mage_Adminhtml_Block_W
         return $this->getUrl('adminhtml/custsize/profile', $this->getUrlParams('save'));
     }
 
-    /*
+    /**
      * Get the saveascopy URL
      */
     public function getCopyUrl()
@@ -47,7 +47,7 @@ class Yireo_Custsize_Block_Admin_Profile_Abstract extends Mage_Adminhtml_Block_W
         return $this->getUrl('adminhtml/custsize/profile', $this->getUrlParams('copy'));
     }
 
-    /*
+    /**
      * Get the cofirmdelete URL
      */
     public function getConfirmdeleteUrl()
@@ -55,7 +55,7 @@ class Yireo_Custsize_Block_Admin_Profile_Abstract extends Mage_Adminhtml_Block_W
         return $this->getUrl('adminhtml/custsize/profile', $this->getUrlParams('confirmdelete'));
     }
 
-    /*
+    /**
      * Get the cofirmdelete URL
      */
     public function getDeleteUrl()
@@ -63,7 +63,7 @@ class Yireo_Custsize_Block_Admin_Profile_Abstract extends Mage_Adminhtml_Block_W
         return $this->getUrl('adminhtml/custsize/profile', $this->getUrlParams('delete'));
     }
 
-    /*
+    /**
      * Get the cancel URL
      */
     public function getCancelUrl()
@@ -76,7 +76,7 @@ class Yireo_Custsize_Block_Admin_Profile_Abstract extends Mage_Adminhtml_Block_W
         }
     }
 
-    /*
+    /**
      * Get a specific fieldset
      */
     public function getFieldset($fieldset = 'basic')
@@ -90,7 +90,7 @@ class Yireo_Custsize_Block_Admin_Profile_Abstract extends Mage_Adminhtml_Block_W
         return $fields;
     }
 
-    /*
+    /**
      * Fetch all enabled fieldsets
      */
     public function getFieldsets()
@@ -103,7 +103,7 @@ class Yireo_Custsize_Block_Admin_Profile_Abstract extends Mage_Adminhtml_Block_W
         return $collection;
     }
 
-    /*
+    /**
      * Get all fields from a specific fieldset
      */
     public function getFieldsFromFieldset($fieldset = 'basic')

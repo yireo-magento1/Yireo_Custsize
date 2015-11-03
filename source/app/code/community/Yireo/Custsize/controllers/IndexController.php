@@ -13,12 +13,12 @@
  */
 class Yireo_Custsize_IndexController extends Mage_Core_Controller_Front_Action
 {
-    /*
+    /**
      * Current profile ID
      */
     protected $_profile_id = 0;
 
-    /*
+    /**
      * Current profile
      */
     protected $_profile = null;
@@ -48,12 +48,12 @@ class Yireo_Custsize_IndexController extends Mage_Core_Controller_Front_Action
         $this->_profile = Mage::getModel('custsize/profile')->load($this->_profile_id);
         $task = $this->getRequest()->getParam('task', null);
 
-        if($this->checkAccess($this->_profile_id, $task) == false) {
+        if ($this->checkAccess($this->_profile_id, $task) == false) {
             $this->_redirect('custsize/index/profiles');
             return;
         }
 
-        switch($task) {
+        switch ($task) {
             case 'delete':
                 $this->deleteProfile();
                 break;
@@ -114,24 +114,29 @@ class Yireo_Custsize_IndexController extends Mage_Core_Controller_Front_Action
 
             // Make sure the required fields are not empty
             $pass = true;
-            if(empty($profileData['name'])) {
+            if (empty($profileData['name'])) {
                 Mage::getModel('core/session')->addError('Name is required');
                 $pass = false;
             }
 
-            if(!empty($fieldData)) {
-                foreach($fieldData as $fieldId => $fieldValue) {
+            if (!empty($fieldData)) {
+                foreach ($fieldData as $fieldId => $fieldValue) {
                     $field = Mage::getModel('custsize/profile_field')->load($fieldId);
-                    if($field->getData('required') == 1 && empty($fieldValue)) {
+
+                    if ($field->getData('required') == 1 && empty($fieldValue)) {
                         Mage::getModel('core/session')->addError(Mage::helper('custsize')->__('%s is required', $field->getLabel()));
                         $pass = false;
                     }
                 }
             }
 
-            if($pass == false) {
+            if ($pass == false) {
                 $id = $this->_profile_id;
-                if($id > 0) {
+                $customerSession = Mage::getSingleton('customer/session');
+                $customerSession->setData('custsize_tmp_fields', $fieldData);
+                $customerSession->setData('custsize_tmp_profile', $profileData);
+
+                if ($id > 0) {
                     $this->_redirect('custsize/index/profile', array('task' => 'edit', 'profile_id' => $id));
                 } else {
                     $this->_redirect('custsize/index/profile', array('task' => 'new'));
@@ -145,10 +150,20 @@ class Yireo_Custsize_IndexController extends Mage_Core_Controller_Front_Action
             $profile->setData('default', (isset($profileData['default'])) ? $profileData['default'] : 0);
             $profile->setData('customer_id', $this->_getSession()->getCustomerId());
 
+            // If this profile is going to be default, set all other profiles to be non-default
+            if($profile->getData('default')) {
+                $resource = Mage::getSingleton('core/resource');
+                $writeConnection = $resource->getConnection('core_write');
+                $tableName = $resource->getTableName('custsize_profile');
+                $customer = Mage::getModel('customer/session')->getCustomer();
+                $query = "UPDATE {$tableName} SET `default` = 0 WHERE `customer_id` = " . $customer->getId();
+                $writeConnection->query($query);
+            }
+
             // Save this profile
             try {
                 $profile->save();
-            } catch(Exception $e) {
+            } catch (Exception $e) {
                 Mage::getModel('core/session')->addError($e->getMessage());
                 $this->_redirect('custsize/index/profiles');
                 return;
@@ -157,7 +172,7 @@ class Yireo_Custsize_IndexController extends Mage_Core_Controller_Front_Action
             // Save the fields belonging to this profile
             $rs = $profile->saveFields($fieldData, $profile->getProfileId());
 
-            if($rs == true) {
+            if ($rs == true) {
                 Mage::getModel('core/session')->addSuccess('Successfully saved profile');
             } else {
                 Mage::getModel('core/session')->addWarning('Successfully saved profile, but failed to save extra values');
@@ -183,7 +198,7 @@ class Yireo_Custsize_IndexController extends Mage_Core_Controller_Front_Action
         return;
     }
 
-    /*
+    /**
      * Check if this profile is owned by this customer
      */
     protected function checkAccess($profile_id = 0, $task = null)
@@ -193,24 +208,24 @@ class Yireo_Custsize_IndexController extends Mage_Core_Controller_Front_Action
             return false;
         }
 
-        if($profile_id == 0 && in_array($task, array('new', 'save'))) {
+        if ($profile_id == 0 && in_array($task, array('new', 'save'))) {
             return true;
         }
 
         $profile = Mage::getModel('custsize/profile')->load($profile_id);
-        if(empty($profile) && $profile_id > 0) {
+        if (empty($profile) && $profile_id > 0) {
             $this->_getSession()->addError($this->__('Empty request'));
             return false;
 
-        } elseif($profile->getCustomerId() != $this->_getSession()->getCustomerId()) {
-            $this->_getSession()->addError($this->__('Access denied: '.$profile_id));
+        } elseif ($profile->getCustomerId() != $this->_getSession()->getCustomerId()) {
+            $this->_getSession()->addError($this->__('Access denied: ' . $profile_id));
             return false;
         }
 
         return true;
     }
 
-    /*
+    /**
      * Helper-method to get the current customer-session
      */
     protected function _getSession()

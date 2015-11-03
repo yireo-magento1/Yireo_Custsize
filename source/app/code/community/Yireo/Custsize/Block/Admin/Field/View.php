@@ -11,7 +11,7 @@
 
 class Yireo_Custsize_Block_Admin_Field_View extends Yireo_Custsize_Block_Admin_Field_Abstract
 {
-    /*
+    /**
      * Constructor method
      */
     public function _construct()

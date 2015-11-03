@@ -54,6 +54,15 @@ class Yireo_Custsize_Model_Observer
         return $this;
     }
 
+    /**
+     * Method to add additional_data to an object
+     *
+     * @param $item
+     * @param $key
+     * @param $value
+     *
+     * @return mixed
+     */
     protected function addAdditionalData(&$item, $key, $value)
     {
         $data = unserialize($item->getAdditionalData());

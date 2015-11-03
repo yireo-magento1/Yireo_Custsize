@@ -11,7 +11,7 @@
 
 class Yireo_Custsize_Block_Admin_Profile_Confirmdelete extends Yireo_Custsize_Block_Admin_Profile_Abstract
 {
-    /*
+    /**
      * Constructor method
      */
     public function _construct()

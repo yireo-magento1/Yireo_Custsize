@@ -9,9 +9,12 @@
  * @link        http://www.yireo.com/
  */
 
+/**
+ * Class Yireo_Custsize_Block_Admin_Profiles
+ */
 class Yireo_Custsize_Block_Admin_Profiles extends Mage_Adminhtml_Block_Widget_Container
 {
-    /*
+    /**
      * Constructor method
      */
     public function _construct()
@@ -20,6 +23,11 @@ class Yireo_Custsize_Block_Admin_Profiles extends Mage_Adminhtml_Block_Widget_Co
         $this->setTemplate('custsize/profiles.phtml');
     }
 
+    /**
+     * Prepare the layout
+     *
+     * @return Mage_Core_Block_Abstract
+     */
     protected function _prepareLayout()
     {
         $this->setChild('grid', $this->getLayout()
@@ -29,6 +37,11 @@ class Yireo_Custsize_Block_Admin_Profiles extends Mage_Adminhtml_Block_Widget_Co
         return parent::_prepareLayout();
     }
 
+    /**
+     * Return the child blocks grid HTML
+     *
+     * @return string
+     */
     public function getGridHtml()
     {
         return $this->getChildHtml('grid');

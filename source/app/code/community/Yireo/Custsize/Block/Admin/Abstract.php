@@ -9,8 +9,16 @@
  * @link        http://www.yireo.com/
  */
 
+/**
+ * Class Yireo_Custsize_Block_Admin_Abstract
+ */
 class Yireo_Custsize_Block_Admin_Abstract extends Mage_Adminhtml_Block_Widget_Container
 {
+    /**
+     * Modify the HTML code of this block
+     *
+     * @return string
+     */
     protected function _toHtml()
     {
         $html = parent::_toHtml();
@@ -18,8 +26,14 @@ class Yireo_Custsize_Block_Admin_Abstract extends Mage_Adminhtml_Block_Widget_Co
         return $html;
     }
 
+    /**
+     * Return the footer
+     *
+     * @return mixed
+     */
     public function getFooter()
     {
+        /** @var Mage_Core_Block_Template $block */
         $block = $this->getLayout()->createBlock('core/template')->setTemplate('custsize/footer.phtml');
         $block->setVersion($this->getVersion());
         $block->setTitle('Customer Sizes');
@@ -29,8 +43,6 @@ class Yireo_Custsize_Block_Admin_Abstract extends Mage_Adminhtml_Block_Widget_Co
     /**
      * Return the current version
      *
-     * @access public
-     * @param null
      * @return string
      */
     public function getVersion()
@@ -39,22 +51,38 @@ class Yireo_Custsize_Block_Admin_Abstract extends Mage_Adminhtml_Block_Widget_Co
         return (string)$config->version;
     }
 
+    /**
+     * Return the child blocks HTML containing the grid
+     *
+     * @return string
+     */
     public function getGridHtml()
     {
         return $this->getChildHtml('grid');
     }
 
+    /**
+     * Return a block containing
+     *
+     * @param $action
+     * @param $title
+     * @param null $url
+     * @param null $onclick
+     * @param string $class
+     */
     public function getButtonChildBlock($action, $title, $url = null, $onclick = null, $class = 'save')
     {
-        if(empty($onclick) && !empty($url)) $onclick = 'setLocation(\''.$url.'\');return false;';
+        if(empty($onclick) && !empty($url)) {
+            $onclick = 'setLocation(\''.$url.'\');return false;';
+        }
 
-        $this->setChild($action.'_button',
-            $this->getLayout()->createBlock('adminhtml/widget_button')
-                ->setData(array(
-                    'label' => Mage::helper('core')->__($title),
-                    'onclick' => $onclick,
-                    'class' => $class
-                ))
-        );
+        $buttonBlock = $this->getLayout()->createBlock('adminhtml/widget_button')
+            ->setData(array(
+                'label' => Mage::helper('core')->__($title),
+                'onclick' => $onclick,
+                'class' => $class
+            ));
+
+        $this->setChild($action.'_button', $buttonBlock);
     }
 }

@@ -11,7 +11,7 @@
 
 class Yireo_Custsize_Block_Admin_Customer_Tab  extends Mage_Adminhtml_Block_Template implements Mage_Adminhtml_Block_Widget_Tab_Interface
 {
-    /*
+    /**
      * Constructor method
      */
     public function _construct()

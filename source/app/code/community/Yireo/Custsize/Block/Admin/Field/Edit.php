@@ -11,7 +11,7 @@
 
 class Yireo_Custsize_Block_Admin_Field_Edit extends Yireo_Custsize_Block_Admin_Field_Abstract
 {
-    /*
+    /**
      * Constructor method
      */
     public function _construct()
@@ -20,8 +20,8 @@ class Yireo_Custsize_Block_Admin_Field_Edit extends Yireo_Custsize_Block_Admin_F
         $this->setTemplate('custsize/field/edit.phtml');
     }
 
-    /*
-     * 
+    /**
+     *
      */
     public function getTitle()
     {
@@ -32,7 +32,7 @@ class Yireo_Custsize_Block_Admin_Field_Edit extends Yireo_Custsize_Block_Admin_F
         }
     }
 
-    /*
+    /**
      * Get the available fieldsets
      */
     public function getFieldsets()
@@ -40,7 +40,7 @@ class Yireo_Custsize_Block_Admin_Field_Edit extends Yireo_Custsize_Block_Admin_F
         return Mage::getModel('custsize/profile_fieldset')->getCollection();
     }
 
-    /*
+    /**
      * Get the available units
      */
     public function getUnits()
@@ -48,7 +48,7 @@ class Yireo_Custsize_Block_Admin_Field_Edit extends Yireo_Custsize_Block_Admin_F
         return Mage::helper('custsize/definitions')->getUnits();
     }
 
-    /*
+    /**
      * Construct a simple yes-no selector
      */
     public function getYesno($name, $value)

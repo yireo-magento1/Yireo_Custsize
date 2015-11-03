@@ -11,7 +11,7 @@
 
 class Yireo_Custsize_Block_Admin_Fieldset_Edit extends Yireo_Custsize_Block_Admin_Fieldset_Abstract
 {
-    /*
+    /**
      * Constructor method
      */
     public function _construct()
@@ -20,8 +20,8 @@ class Yireo_Custsize_Block_Admin_Fieldset_Edit extends Yireo_Custsize_Block_Admi
         $this->setTemplate('custsize/fieldset/edit.phtml');
     }
 
-    /*
-     * 
+    /**
+     *
      */
     public function getTitle()
     {
@@ -32,7 +32,7 @@ class Yireo_Custsize_Block_Admin_Fieldset_Edit extends Yireo_Custsize_Block_Admi
         }
     }
 
-    /*
+    /**
      * Construct a simple yes-no selector
      */
     public function getYesno($name, $value)

@@ -11,7 +11,7 @@
 
 class Yireo_Custsize_Block_Admin_Profile_Edit extends Yireo_Custsize_Block_Admin_Profile_Abstract
 {
-    /*
+    /**
      * Constructor method
      */
     public function _construct()
@@ -20,8 +20,8 @@ class Yireo_Custsize_Block_Admin_Profile_Edit extends Yireo_Custsize_Block_Admin
         $this->setTemplate('custsize/profile/edit.phtml');
     }
 
-    /*
-     * 
+    /**
+     *
      */
     public function getTitle()
     {

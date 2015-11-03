@@ -11,7 +11,7 @@
 
 class Yireo_Custsize_Block_Profile_Abstract extends Mage_Core_Block_Template
 {
-    /*
+    /**
      * Constructor method
      */
     public function _construct()
@@ -31,10 +31,30 @@ class Yireo_Custsize_Block_Profile_Abstract extends Mage_Core_Block_Template
             $profile->setData('name', $customer->getName());
             $profile->setData('description', $this->__('My default profile'));
         }
+
+        $customerSession = Mage::getSingleton('customer/session');
+        $fieldData = $customerSession->getData('custsize_tmp_fields');
+        $profileData = $customerSession->getData('custsize_tmp_profile');
+
+        if (!empty($profileData)) {
+            foreach($profileData as $profileName => $profileValue) {
+                $profile->setData($profileName, $profileValue);
+            }
+        }
+
+        if (!empty($fieldData)) {
+            foreach($fieldData as $fieldId => $fieldValue) {
+                $profile->setData('field'.$fieldId, $fieldValue);
+            }
+        }
+
+        $customerSession->setData('custsize_tmp_fields', null);
+        $customerSession->setData('custsize_tmp_profile', null);
+
         $this->setProfile($profile);
     }
 
-    /*
+    /**
      * Get the save URL
      */
     public function getSaveUrl()
@@ -42,7 +62,7 @@ class Yireo_Custsize_Block_Profile_Abstract extends Mage_Core_Block_Template
         return $this->getUrl('custsize/index/profile', array('task' => 'save', 'profile_id' => $this->getProfileId()));
     }
 
-    /*
+    /**
      * Get the cofirm-delete URL
      */
     public function getConfirmdeleteUrl()
@@ -50,7 +70,7 @@ class Yireo_Custsize_Block_Profile_Abstract extends Mage_Core_Block_Template
         return $this->getUrl('custsize/index/profile', array('task' => 'confirmdelete', 'profile_id' => $this->getProfileId()));
     }
 
-    /*
+    /**
      * Get the delete URL
      */
     public function getDeleteUrl()
@@ -58,7 +78,7 @@ class Yireo_Custsize_Block_Profile_Abstract extends Mage_Core_Block_Template
         return $this->getUrl('custsize/index/profile', array('task' => 'delete', 'profile_id' => $this->getProfileId()));
     }
 
-    /*
+    /**
      * Get all fields from a specific fieldset
      */
     public function getFieldsFromFieldset($fieldset = 'basic')
@@ -69,10 +89,11 @@ class Yireo_Custsize_Block_Profile_Abstract extends Mage_Core_Block_Template
             ->setOrder('ordering', 'ASC')
             ->load()
         ;
+
         return $fields;
     }
 
-    /*
+    /**
      * Fetch all enabled fieldsets
      */
     public function getFieldsets()

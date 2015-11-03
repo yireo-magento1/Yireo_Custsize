@@ -33,4 +33,42 @@
             </children>
         </catalog>
     </menu>
+
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <customer>
+                        <children>
+                            <custsize_profiles translate="title" module="custsize">
+                                <title>Size Profiles</title>
+                            </custsize_profiles>
+                        </children>
+                    </customer>
+                    <catalog>
+                        <children>
+                            <attributes>
+                                <children>
+                                    <custsize_fields translate="title" module="custsize">
+                                        <title>Customer Size Fields</title>
+                                    </custsize_fields>
+                                </children>
+                            </attributes>
+                        </children>
+                    </catalog>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <custsize translate="title" module="custsize">
+                                        <title>Custsize Section</title>
+                                    </custsize>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                </children>
+            </admin>
+        </resources>
+    </acl>
 </config>
