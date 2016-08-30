@@ -2,13 +2,16 @@
 /**
  * Yireo Custsize
  *
- * @author      Yireo (http://www.yireo.com/)
+ * @author      Yireo (https://www.yireo.com/)
  * @package     Yireo_Custsize
- * @copyright   Copyright 2015 Yireo (http://www.yireo.com/)
+ * @copyright   Copyright 2015 Yireo (https://www.yireo.com/)
  * @license     Open Source License (OSL v3)
- * @link        http://www.yireo.com/
+ * @link        https://www.yireo.com/
  */
 
+/**
+ * Class Yireo_Custsize_Block_Profile_Abstract
+ */
 class Yireo_Custsize_Block_Profile_Abstract extends Mage_Core_Block_Template
 {
     /**
@@ -56,6 +59,8 @@ class Yireo_Custsize_Block_Profile_Abstract extends Mage_Core_Block_Template
 
     /**
      * Get the save URL
+     *
+     * @return string
      */
     public function getSaveUrl()
     {
@@ -64,6 +69,8 @@ class Yireo_Custsize_Block_Profile_Abstract extends Mage_Core_Block_Template
 
     /**
      * Get the cofirm-delete URL
+     *
+     * @return string
      */
     public function getConfirmdeleteUrl()
     {
@@ -72,6 +79,8 @@ class Yireo_Custsize_Block_Profile_Abstract extends Mage_Core_Block_Template
 
     /**
      * Get the delete URL
+     *
+     * @return string
      */
     public function getDeleteUrl()
     {
@@ -80,6 +89,8 @@ class Yireo_Custsize_Block_Profile_Abstract extends Mage_Core_Block_Template
 
     /**
      * Get all fields from a specific fieldset
+     *
+     * @return Varien_Data_Collection
      */
     public function getFieldsFromFieldset($fieldset = 'basic')
     {
@@ -95,6 +106,8 @@ class Yireo_Custsize_Block_Profile_Abstract extends Mage_Core_Block_Template
 
     /**
      * Fetch all enabled fieldsets
+     *
+     * @return Varien_Data_Collection
      */
     public function getFieldsets()
     {

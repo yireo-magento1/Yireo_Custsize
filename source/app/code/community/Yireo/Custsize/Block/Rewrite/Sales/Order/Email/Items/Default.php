@@ -2,13 +2,16 @@
 /**
  * Yireo Custsize
  *
- * @author      Yireo (http://www.yireo.com/)
+ * @author      Yireo (https://www.yireo.com/)
  * @package     Yireo_Custsize
- * @copyright   Copyright 2015 Yireo (http://www.yireo.com/)
+ * @copyright   Copyright 2015 Yireo (https://www.yireo.com/)
  * @license     Open Source License (OSL v3)
- * @link        http://www.yireo.com/
+ * @link        https://www.yireo.com/
  */
 
+/**
+ * Class Yireo_Custsize_Block_Rewrite_Sales_Order_Email_Items_Default
+ */
 class Yireo_Custsize_Block_Rewrite_Sales_Order_Email_Items_Default extends Mage_Sales_Block_Order_Email_Items_Default
 {
     /**

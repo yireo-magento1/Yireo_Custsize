@@ -5,16 +5,16 @@
  *
  * @author Yireo
  * @package Custsize
- * @copyright Copyright 2015
+ * @copyright Copyright 2016
  * @license Yireo EULA (www.yireo.com)
- * @link http://www.yireo.com
+ * @link https://www.yireo.com
  */
 -->
 <config>
 
     <modules>
         <Yireo_Custsize>
-            <version>0.2.2</version>
+            <version>0.2.4</version>
         </Yireo_Custsize>
     </modules>
 
@@ -94,6 +94,19 @@
                 </connection>
             </custsize_read>
         </resources>
+
+        <events>
+            <catalog_product_save_before>
+                <observers>
+                    <custsize_catalog_product_hasOptions>
+                        <type>singleton</type>
+                        <class>custsize/observer_product_hasOptions</class>
+                        <method>execute</method>
+                    </custsize_catalog_product_hasOptions>
+                </observers>
+            </catalog_product_save_before>
+        </events>
+
     </global>
 
     <frontend>
@@ -119,13 +132,22 @@
         <events>
             <checkout_cart_add_product_complete>
                 <observers>
-                    <custsize_observer>
+                    <custsize_checkout_addProfileData>
                         <type>singleton</type>
-                        <class>custsize/observer</class>
-                        <method>checkoutCartAddProductComplete</method>
-                    </custsize_observer>
+                        <class>custsize/observer_checkout_addProfileData</class>
+                        <method>execute</method>
+                    </custsize_checkout_addProfileData>
                 </observers>
             </checkout_cart_add_product_complete>
+            <checkout_cart_product_add_after>
+                <observers>
+                    <custsize_checkout_checkChosenProfile>
+                        <type>singleton</type>
+                        <class>custsize/observer_checkout_checkChosenProfile</class>
+                        <method>execute</method>
+                    </custsize_checkout_checkChosenProfile>
+                </observers>
+            </checkout_cart_product_add_after>
         </events>
     </frontend>
 

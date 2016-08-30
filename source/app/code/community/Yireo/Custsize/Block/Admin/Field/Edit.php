@@ -2,13 +2,16 @@
 /**
  * Yireo Custsize
  *
- * @author      Yireo (http://www.yireo.com/)
+ * @author      Yireo (https://www.yireo.com/)
  * @package     Yireo_Custsize
- * @copyright   Copyright 2015 Yireo (http://www.yireo.com/)
+ * @copyright   Copyright 2015 Yireo (https://www.yireo.com/)
  * @license     Open Source License (OSL v3)
- * @link        http://www.yireo.com/
+ * @link        https://www.yireo.com/
  */
 
+/**
+ * Class Yireo_Custsize_Block_Admin_Field_Edit
+ */
 class Yireo_Custsize_Block_Admin_Field_Edit extends Yireo_Custsize_Block_Admin_Field_Abstract
 {
     /**
@@ -21,11 +24,13 @@ class Yireo_Custsize_Block_Admin_Field_Edit extends Yireo_Custsize_Block_Admin_F
     }
 
     /**
+     * Return the title
      *
+     * @return string
      */
     public function getTitle()
     {
-        if($this->getFieldId() > 0) {
+        if ($this->getFieldId() > 0) {
             return $this->__('Edit Size Field');
         } else {
             return $this->__('New Size Field');
@@ -34,6 +39,8 @@ class Yireo_Custsize_Block_Admin_Field_Edit extends Yireo_Custsize_Block_Admin_F
 
     /**
      * Get the available fieldsets
+     *
+     * @return string
      */
     public function getFieldsets()
     {
@@ -42,6 +49,8 @@ class Yireo_Custsize_Block_Admin_Field_Edit extends Yireo_Custsize_Block_Admin_F
 
     /**
      * Get the available units
+     *
+     * @return array
      */
     public function getUnits()
     {
@@ -50,6 +59,8 @@ class Yireo_Custsize_Block_Admin_Field_Edit extends Yireo_Custsize_Block_Admin_F
 
     /**
      * Construct a simple yes-no selector
+     *
+     * @return string
      */
     public function getYesno($name, $value)
     {
@@ -57,10 +68,10 @@ class Yireo_Custsize_Block_Admin_Field_Edit extends Yireo_Custsize_Block_Admin_F
         $selected_no = ($value == 0) ? 'checked' : null;
 
         $html = null;
-        $html .= '<input type="radio" name="field['.$name.']" id="'.$name.'_yes" value="1" '.$selected_yes.' />';
-        $html .= '&nbsp;<label for="'.$name.'_yes">'.$this->__('Yes').'</label>';
-        $html .= '&nbsp;<input type="radio" name="field['.$name.']" id="'.$name.'_no" value="0" '.$selected_no.' />';
-        $html .= '&nbsp;<label for="'.$name.'_no">'.$this->__('No').'</label>';
+        $html .= '<input type="radio" name="field[' . $name . ']" id="' . $name . '_yes" value="1" ' . $selected_yes . ' />';
+        $html .= '&nbsp;<label for="' . $name . '_yes">' . $this->__('Yes') . '</label>';
+        $html .= '&nbsp;<input type="radio" name="field[' . $name . ']" id="' . $name . '_no" value="0" ' . $selected_no . ' />';
+        $html .= '&nbsp;<label for="' . $name . '_no">' . $this->__('No') . '</label>';
         return $html;
     }
 
@@ -75,7 +86,7 @@ class Yireo_Custsize_Block_Admin_Field_Edit extends Yireo_Custsize_Block_Admin_F
             $this->getLayout()->createBlock('adminhtml/widget_button')
                 ->setData(array(
                     'label' => Mage::helper('catalog')->__('Delete'),
-                    'onclick' => 'setLocation(\''.$this->getDeleteUrl().'\');return false;',
+                    'onclick' => 'setLocation(\'' . $this->getDeleteUrl() . '\');return false;',
                     'class' => 'delete'
                 ))
         );
@@ -93,7 +104,7 @@ class Yireo_Custsize_Block_Admin_Field_Edit extends Yireo_Custsize_Block_Admin_F
             $this->getLayout()->createBlock('adminhtml/widget_button')
                 ->setData(array(
                     'label' => Mage::helper('catalog')->__('Back'),
-                    'onclick' => 'setLocation(\''.$this->getUrl('adminhtml/custsize/fields').'\'); return false;',
+                    'onclick' => 'setLocation(\'' . $this->getUrl('adminhtml/custsize/fields') . '\'); return false;',
                     'class' => 'back'
                 ))
         );

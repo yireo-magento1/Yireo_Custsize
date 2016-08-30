@@ -2,17 +2,30 @@
 /**
  * Yireo Commons - Abstract admin-grid class
  *
- * @author      Yireo (http://www.yireo.com/)
+ * @author      Yireo (https://www.yireo.com/)
  * @package     Yireo_Custsize
- * @copyright   Copyright 2015 Yireo (http://www.yireo.com/)
+ * @copyright   Copyright 2015 Yireo (https://www.yireo.com/)
  * @license     Open Source License (OSL v3)
- * @link        http://www.yireo.com/
+ * @link        https://www.yireo.com/
  */
 
+/**
+ * Class Yireo_Custsize_Block_Admin_Abstract_Grid
+ */
 class Yireo_Custsize_Block_Admin_Abstract_Grid extends Mage_Adminhtml_Block_Widget_Grid
 {
+    /**
+     * @var array
+     */
     protected $buttonsChildBlocks = array();
 
+    /**
+     * @param string $action
+     * @param string $title
+     * @param string $url
+     * @param string $onclick
+     * @param string $class
+     */
     public function getButtonChildBlock($action, $title, $url = null, $onclick = null, $class = 'save')
     {
         if(empty($onclick) && !empty($url)) $onclick = 'setLocation(\''.$url.'\');return false;';
@@ -29,6 +42,9 @@ class Yireo_Custsize_Block_Admin_Abstract_Grid extends Mage_Adminhtml_Block_Widg
         $this->buttonsChildBlocks[] = $action;
     }
 
+    /**
+     * @return string
+     */
     public function getMainButtonsHtml()
     {
         $html = parent::getMainButtonsHtml();
@@ -40,6 +56,14 @@ class Yireo_Custsize_Block_Admin_Abstract_Grid extends Mage_Adminhtml_Block_Widg
         return $html;
     }
 
+    /**
+     * @param $value
+     * @param $row
+     * @param $column
+     * @param $isExport
+     *
+     * @return string
+     */
     public function decorateBoolean($value, $row, $column, $isExport)
     {
         $class = '';
